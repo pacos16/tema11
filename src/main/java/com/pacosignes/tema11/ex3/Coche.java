@@ -1,11 +1,17 @@
 package com.pacosignes.tema11.ex3;
 
-abstract class Coche {
-    double velocidad;
-    String matricula;
-    Marchas marcha;
+public abstract class Coche {
+    protected double velocidad;
+    protected String matricula;
+    protected Marchas marcha;
 
-    abstract boolean cambiarMarcha();
+    public Coche(){
+
+    }
+
+    protected  void cambiarMarcha(){
+
+    }
 
     public double getVelocidad() {
         return velocidad;
@@ -13,5 +19,20 @@ abstract class Coche {
     public String getMarcha(){
         return marcha.toString();
     }
+    public void acelerar(double a){
+        velocidad+=a;
+    }
+    public void frenar(double a){
+        velocidad-=a;
+        if(velocidad<0){
+            velocidad=0;
+        }
+    }
+
+    public void imprimirVelocidad(){
+        System.out.println("Su velocidad es de "+velocidad+"Km/h");
+    }
+
+
 
 }

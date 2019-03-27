@@ -4,6 +4,7 @@ public enum Marchas {
 
     PARQUING("Parquing",0), PRIMERA("Primera" ,1), SEGUNDA("Segunda",2)
     , TERCERA("Tercera",3), QUARTA("Cuarta",4), QUINTA("Quinta",5);
+
     private int num;
     private String nombre;
 
@@ -14,8 +15,14 @@ public enum Marchas {
 
     @Override
     public String toString() {
-        return "Marchas{" +
-                "num=" + num +
-                '}';
+        return "Usted esta en la marcha "+num;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 }
