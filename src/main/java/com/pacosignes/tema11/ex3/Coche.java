@@ -5,8 +5,8 @@ public abstract class Coche {
     protected String matricula;
     protected Marchas marcha;
 
-    public Coche(){
-
+    public Coche(String matricula){
+        this.matricula=matricula;
     }
 
     protected  void cambiarMarcha(){
@@ -33,6 +33,12 @@ public abstract class Coche {
         System.out.println("Su velocidad es de "+velocidad+"Km/h");
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Coche{" +
+                "velocidad=" + velocidad +
+                ", matricula='" + matricula + '\'' +
+                ", marcha=" + marcha.getNombre() +
+                '}';
+    }
 }

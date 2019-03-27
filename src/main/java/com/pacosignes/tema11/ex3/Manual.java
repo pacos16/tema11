@@ -4,7 +4,8 @@ package com.pacosignes.tema11.ex3;
 public class Manual extends Coche {
 
 
-    public Manual(){
+    public Manual(String matricula){
+        super(matricula);
         marcha=Marchas.PARQUING;
     }
 

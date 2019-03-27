@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Coche c=new Automatico();
-        Coche c1=new Manual();
+        Coche c=new Automatico("2567DRF");
+        Coche c1=new Manual("2342CMV");
 
         c1.acelerar(25);
         c1.imprimirVelocidad();
@@ -23,5 +23,6 @@ public class Main {
         c.frenar(40);
         System.out.println(c.getMarcha());
         c.imprimirVelocidad();
+
     }
 }

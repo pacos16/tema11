@@ -15,7 +15,7 @@ public enum Marchas {
 
     @Override
     public String toString() {
-        return "Usted esta en la marcha "+num;
+        return "Usted esta en "+nombre;
     }
 
     public int getNum() {

@@ -2,7 +2,9 @@ package com.pacosignes.tema11.ex3;
 
 public class Automatico extends Coche {
 
-    public Automatico(){
+    public Automatico(String matricula){
+        super(matricula);
+        marcha=Marchas.PARQUING;
 
     }
 
