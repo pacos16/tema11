@@ -14,8 +14,9 @@ public class Electrodomestico {
         }
 
     }
-    protected static final String ETIQUETAS_EFI="ABCDEF";
 
+    protected static final String ETIQUETAS_EFI="ABCDEF";
+    //todo enum con cosas.
     //valores por defecto
     protected static final double PESO_DEF=5;
     protected static final double PRECIO_DEF=100;
@@ -47,10 +48,21 @@ public class Electrodomestico {
         this.precioBase = precioBase;
         this.peso = peso;
         comprobarColor(color);
-        this.eficienciaEnergetica = eficienciaEnergetica;
+        comprobarConsumoEnergetico(eficienciaEnergetica);
     }
 
-
+    private void comprobarConsumoEnergetico(char consumo){
+        boolean correcto=false;
+        for(int i = 0; i<Electrodomestico.ETIQUETAS_EFI.length();i++){
+            if(consumo==Electrodomestico.ETIQUETAS_EFI.charAt(i)){
+                eficienciaEnergetica=consumo;
+                correcto=true;
+            }
+        }
+        if(!correcto){
+            eficienciaEnergetica=Electrodomestico.EFI_DEF;
+        }
+    }
     private void comprobarColor(String color){
         boolean correcto=false;
         for (Colores c: Colores.values()
@@ -66,6 +78,8 @@ public class Electrodomestico {
         }
 
     }
+
+
 
 
 }
