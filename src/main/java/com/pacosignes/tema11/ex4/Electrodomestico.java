@@ -79,6 +79,41 @@ public class Electrodomestico {
 
     }
 
+    public double precioFinal(){
+        int[] pesos={20,50,80};
+        double precioFinal;
+
+        if(peso<pesos[0]){
+            precioFinal=precioBase+10;
+        }else if(peso<pesos[1]){
+            precioFinal=precioBase+50;
+        }else if(peso<pesos[2]){
+            precioFinal=precioBase+80;
+        }else{
+
+            precioFinal=precioBase+100;
+        }
+
+
+        switch (eficienciaEnergetica){
+
+            case 'A':precioFinal+=100;
+            break;
+            case 'B': precioFinal+=80;
+            break;
+            case 'C': precioFinal+=60;
+            break;
+            case 'D': precioFinal+=50;
+            break;
+            case 'E': precioFinal+=30;
+            break;
+            case 'F': precioFinal+=10;
+            break;
+
+        }
+        return precioFinal;
+    }
+
 
 
 
