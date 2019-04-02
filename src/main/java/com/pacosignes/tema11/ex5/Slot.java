@@ -24,8 +24,11 @@ public class Slot {
 
     public int stackItem(int num){
         if(stack+num>objeto.getMaxStack()){
+
+            int sobra=num-(objeto.getMaxStack()-stack);
             stack=objeto.getMaxStack();
-            return num-stack;
+
+            return sobra;
         }else{
             stack+=num;
             return 0;
