@@ -9,21 +9,21 @@ public class Slot {
 
     public Slot() {
         vacio=true;
+        objeto=new Item();
         stack=0;
     }
 
-    public boolean setItem(Item objeto){
+    public void setItem(Item objeto){
 
-        if(vacio=true) {
+
             this.objeto = objeto;
-            return true;
-        }else{
-            return false;
-        }
+            vacio=false;
+
+
     }
 
     public int stackItem(int num){
-        if(stack+num<objeto.getMaxStack()){
+        if(stack+num>objeto.getMaxStack()){
             stack=objeto.getMaxStack();
             return num-stack;
         }else{
@@ -39,7 +39,17 @@ public class Slot {
         }
         return stack;
     }
+    public Item getItem(){
+        return objeto;
+    }
+    public boolean getVacio(){
+        return vacio;
+    }
 
+
+    public String toString(){
+        return ""+objeto.getNombre()+" "+stack;
+    }
 
 
 }

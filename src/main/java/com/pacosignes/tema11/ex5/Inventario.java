@@ -23,7 +23,7 @@ public class Inventario {
 
     public int addItem(){
         int opcion;
-        Item item;
+        Item item=new Item();
         do{
 
             menuItems();
@@ -44,7 +44,7 @@ public class Inventario {
 
         }
         boolean correcto;
-        int cantidad;
+        int cantidad=0;
         do {
             correcto=true;
             System.out.println("quantos quieres anyadir");
@@ -56,13 +56,24 @@ public class Inventario {
             }
         }while(!correcto);
 
-        boolean espacio=true;
 
-        while(espacio && cantidad>0){
+
+        while(cantidad>0){
             for(int i=0;i<inventario.length;i++){
-                if(inventario[i] instanceof )
+                if(inventario[i].getItem().getClass().equals(item.getClass())){
+                    cantidad=inventario[i].stackItem(cantidad);
+                }
+            }
+            if(cantidad>0){
+                for(int i=0;i<inventario.length && cantidad>0;i++){
+                    if(inventario[i].getVacio()){
+                        inventario[i].setItem(item);
+                        cantidad=inventario[i].stackItem(cantidad);
+                    }
+                }
             }
         }
+        return cantidad;
     }
 
 
@@ -75,6 +86,13 @@ public class Inventario {
         System.out.println("3. Madera");
         System.out.println("4. Piedra Ender");
         System.out.println("5. Huevo");
+    }
+
+    public void printInventario(){
+        for (Slot s: inventario
+             ) {
+            System.out.println(s.toString());
+        }
     }
 
 
