@@ -6,7 +6,7 @@ public class Item {
     String nombre="item";
 
     public Item() {
-
+        maxStack=0;
 
     }
 

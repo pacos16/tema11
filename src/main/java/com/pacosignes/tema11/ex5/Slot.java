@@ -54,5 +54,9 @@ public class Slot {
         return ""+objeto.getNombre()+" "+stack;
     }
 
+    public int getStack(){
+        return stack;
+    }
+
 
 }
