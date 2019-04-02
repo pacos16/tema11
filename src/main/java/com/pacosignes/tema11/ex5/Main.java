@@ -18,6 +18,9 @@ public class Main {
         inventario.printInventario();
 
     }
+    private static int menu(){
+
+    }
 
 
     private static int anyadir(){
