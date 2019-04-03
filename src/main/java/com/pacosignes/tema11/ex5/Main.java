@@ -129,7 +129,7 @@ public class Main {
 
     private static Item menuItems(){
         int opcion;
-        Item item=new Item();
+        Item item=null;
         do{
             System.out.println("Elije un item");
             System.out.println("1. Pico");

@@ -1,6 +1,6 @@
 package com.pacosignes.tema11.ex5;
 
-public class Item {
+public abstract class Item {
 
     int maxStack;
     String nombre="item";
