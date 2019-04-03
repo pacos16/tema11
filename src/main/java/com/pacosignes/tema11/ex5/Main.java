@@ -8,27 +8,32 @@ public class Main {
     static Inventario inventario= new Inventario(7);
 
     public static void main(String[] args) {
-
+        int opcion;
         do{
-            int opcion;
+
             opcion=menu();
 
             switch (opcion){
                 case 1:
                     int sobras=anyadir();
-                    if(sobras<0) {
+                    if(sobras>0) {
                         System.out.println("Han sobrado "+sobras);
                     }
+                    System.out.println("Intro para continuar");
+                    lector.nextLine();
+                    break;
+                case 2:
+                    borrar();
+                    break;
+                case 3:
+                    inventario.printInventario();
+                    System.out.println("Intro para continuar");
+                    lector.nextLine();
                     break;
             }
 
-        }
-        System.out.println(sobras);
-        inventario.printInventario();
-        anyadir();
-        inventario.printInventario();
-        borrar();
-        inventario.printInventario();
+        }while(opcion!=0);
+
 
     }
     private static int menu(){
@@ -50,6 +55,8 @@ public class Main {
             }
             if(opcion<0 || opcion>3){
                 System.out.println("Introduce un numero en el rango");
+                System.out.println("Intro para continuar");
+                lector.nextLine();
             }
 
         }while (opcion<0 || opcion>3);
