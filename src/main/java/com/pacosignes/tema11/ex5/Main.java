@@ -8,8 +8,21 @@ public class Main {
     static Inventario inventario= new Inventario(7);
 
     public static void main(String[] args) {
-        int sobras;
-        sobras=anyadir();
+
+        do{
+            int opcion;
+            opcion=menu();
+
+            switch (opcion){
+                case 1:
+                    int sobras=anyadir();
+                    if(sobras<0) {
+                        System.out.println("Han sobrado "+sobras);
+                    }
+                    break;
+            }
+
+        }
         System.out.println(sobras);
         inventario.printInventario();
         anyadir();
@@ -19,8 +32,32 @@ public class Main {
 
     }
     private static int menu(){
+        int opcion;
+        do {
+            System.out.println("Elije una opcion");
+            System.out.println("----------------");
+            System.out.println("1.Anyadir objetos");
+            System.out.println("2.Borrar objetos");
+            System.out.println("3.Mostrar inventario");
+            System.out.println("--------------------");
+            System.out.println("0.Salir");
+
+            try{
+                opcion= Integer.parseInt(lector.nextLine());
+            }catch (NumberFormatException nfe){
+                opcion=-1;
+
+            }
+            if(opcion<0 || opcion>3){
+                System.out.println("Introduce un numero en el rango");
+            }
+
+        }while (opcion<0 || opcion>3);
+
+        return opcion;
 
     }
+
 
 
     private static int anyadir(){
@@ -91,8 +128,9 @@ public class Main {
             System.out.println("1. Pico");
             System.out.println("2. Espada");
             System.out.println("3. Madera");
-            System.out.println("4. Piedra Ender");
+            System.out.println("4. Piedra");
             System.out.println("5. Huevo");
+            System.out.println("6. Piedra de Ender");
             System.out.println("----------");
             System.out.println("0.Salir");
 
@@ -101,19 +139,29 @@ public class Main {
             }catch (NumberFormatException nfe){
                 opcion =-1;
             }
-            if(opcion<0 || opcion>5){
+            if(opcion<0 || opcion>6){
                 System.out.println("No correcto repita");
             }
-        }while(opcion<0 || opcion>5);
+        }while(opcion<0 || opcion>6);
 
         switch (opcion){
             case 1:
                 item=new Pico();
                 break;
             case 2:
+                item=new Espada();
                 break;
             case 3:
                 item=new Madera();
+                break;
+            case 4:
+                item=new Piedra();
+                break;
+            case 5:
+                item=new Huevo();
+                break;
+            case 6:
+                item=new PiedraDeEnder();
                 break;
             case 0:
                 item=null;
