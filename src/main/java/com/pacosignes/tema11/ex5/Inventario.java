@@ -3,7 +3,7 @@ package com.pacosignes.tema11.ex5;
 
 
 public class Inventario {
-    
+
 
     private Slot[] inventario;
 
@@ -32,7 +32,7 @@ public class Inventario {
 
             for(int i=0;i<inventario.length;i++){
                 //bug into feature. si queda un madera entrara antes a ese que a otro. memoria de slot
-                if(inventario[i].getItem().getClass().equals(item.getClass())){
+                if(inventario[i].getItem()!=null && inventario[i].getItem().getClass().equals(item.getClass())){
 
                     cantidad=inventario[i].stackItem(cantidad);
                 }
@@ -68,7 +68,7 @@ public class Inventario {
         int sum=0;
         for (Slot s:inventario
              ) {
-            if(s.getItem().getClass().equals(item.getClass())){
+            if(s.getItem() != null && s.getItem().getClass().equals(item.getClass())){
                 sum+=s.getStack();
             }
         }

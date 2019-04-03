@@ -9,7 +9,7 @@ public class Slot {
 
     public Slot() {
         vacio=true;
-        objeto=new Item();
+        objeto=null;
         stack=0;
     }
 
