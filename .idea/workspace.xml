@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62769b30-4473-4a26-a4de-ef333bbf3fca" name="Default Changelist" comment="" />
+    <list default="true" id="62769b30-4473-4a26-a4de-ef333bbf3fca" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Inventario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Inventario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Piedra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Piedra.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -24,8 +27,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Piedra.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+            <state relative-caret-position="60">
+              <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+              <folding>
+                <element signature="e#136#137#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -33,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/RecursosPrimarios.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="75">
               <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
               <folding>
                 <element signature="e#149#150#0" expanded="true" />
@@ -46,7 +52,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Madera.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="75">
               <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
               <folding>
                 <element signature="e#104#105#0" expanded="true" />
@@ -59,17 +65,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Slot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+            <state relative-caret-position="331">
+              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2565">
-              <caret line="171" column="22" selection-start-line="171" selection-start-column="22" selection-end-line="171" selection-end-column="22" />
+            <state relative-caret-position="345">
+              <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -101,11 +107,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Inventario.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1440">
-              <caret line="96" selection-start-line="96" selection-end-line="96" />
+            <state relative-caret-position="75">
+              <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Item.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -142,16 +157,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Pico.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Item.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Slot.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Inventario.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Recursos.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/RecursosPrimarios.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Piedra.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Huevo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Madera.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/PiedraDeEnder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Espada.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/CustomItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Piedra.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Inventario.java" />
       </list>
     </option>
   </component>
@@ -213,8 +228,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -310,8 +325,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.3056664" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3048683" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -320,7 +336,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32736155" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32736155" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39739415" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -503,34 +519,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Item.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/CustomItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Piedra.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        <state relative-caret-position="60">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding>
+            <element signature="e#136#137#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/RecursosPrimarios.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-          <folding>
-            <element signature="e#149#150#0" expanded="true" />
-            <element signature="e#183#184#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="345">
+          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Madera.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
+        <state relative-caret-position="75">
           <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding>
             <element signature="e#104#105#0" expanded="true" />
@@ -539,24 +554,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Espada.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/RecursosPrimarios.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+          <folding>
+            <element signature="e#149#150#0" expanded="true" />
+            <element signature="e#183#184#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Huevo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Inventario.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="96" selection-start-line="96" selection-end-line="96" />
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -567,24 +579,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/CustomItem.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Huevo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Espada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Slot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+        <state relative-caret-position="331">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex5/Inventario.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2565">
-          <caret line="171" column="22" selection-start-line="171" selection-start-column="22" selection-end-line="171" selection-end-column="22" />
+        <state relative-caret-position="75">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
         </state>
       </provider>
     </entry>

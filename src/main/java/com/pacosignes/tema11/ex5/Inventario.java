@@ -1,12 +1,9 @@
 package com.pacosignes.tema11.ex5;
 
-import java.util.Scanner;
+
 
 public class Inventario {
-
-    static Scanner lector=new Scanner (System.in);
-
-
+    
 
     private Slot[] inventario;
 
