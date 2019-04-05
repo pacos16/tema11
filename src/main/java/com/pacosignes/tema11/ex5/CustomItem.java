@@ -7,4 +7,6 @@ public class CustomItem extends Item{
         maxStack=maxStac;
 
     }
+
+
 }
