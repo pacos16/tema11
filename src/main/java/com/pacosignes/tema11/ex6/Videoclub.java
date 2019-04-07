@@ -114,6 +114,19 @@ public class Videoclub {
 
         return false;
     }
+    public boolean devolverAlquilable(Alquilable alquilable,GregorianCalendar fechaDevolucion){
+
+        for (FichaSocio fichaSocio:fichasSocios
+        ) {
+            for (Alquiler alquiler:fichaSocio.getAlquileresVigentes()){
+                if(alquiler.getAlquilable().equals(alquilable)){
+                    alquiler.setFechaDevolucion(fechaDevolucion);
+                }
+            }
+        }
+
+        return false;
+    }
 
 
 
