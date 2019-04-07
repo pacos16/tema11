@@ -2,7 +2,7 @@ package com.pacosignes.tema11.ex6;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public abstract class Multimedia {
+public abstract class Multimedia implements Comparable<Multimedia> {
 
     public enum Formato {
         CD("Compact Disc"),DVD("DVD"),BLUE_RAY("Blue Ray"),ARCHIVO("Archivo");
@@ -60,5 +60,11 @@ public abstract class Multimedia {
                 ", fechaEstreno=" + fechaEstreno +
                 ", formatos=" + formatos +
                 '}';
+    }
+
+
+    public int compareTo(Multimedia multimedia){
+
+        return this.nombre.compareTo(multimedia.nombre);
     }
 }
