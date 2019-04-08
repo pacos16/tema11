@@ -40,11 +40,61 @@ public class Videoclub {
 
 
     public boolean borrarMultimedia(Multimedia multimedia){
+
+        // cuatro bucles papi
+        for (Alquilable a:alquilables
+             ) {
+            if(a.getMultimedia().equals(multimedia)){
+                alquilablesBorrados.add(a);
+                for (FichaSocio ficha: fichasSocios
+                     ) {
+                    for (Alquiler alquiler:ficha.getAlquileresVigentes()
+                         ) {
+                        if(alquiler.getAlquilable().equals(a)){
+                            return false;
+                        }
+                    }
+
+                    for (Alquiler alquiler: ficha.getAlquileres()
+                         ) {
+                        if(alquiler.getAlquilable().equals(a)){
+                            for (Alquilable alquilable:alquilablesBorrados
+                                 ) {
+                                if(alquiler.getAlquilable().equals(alquilable)){
+                                    alquiler.setAlquilable(alquilable);
+                                }
+                            }
+                        }
+                    }
+                }
+                alquilables.remove(a);
+            }
+        }
+
+        for (Multimedia m:this.multimedia
+             ) {
+            if(m.equals(multimedia)){
+                multimediaBorrados.add(multimedia);
+                this.multimedia.remove(multimedia);
+                return true;
+            }
+        }
+
         return false;
     }
 
     public boolean borrarAlquilable(Alquilable alquilable){
 
+        for (Alquilable a:alquilables
+             ) {
+
+            if(a.equals(alquilable)){
+                alquilablesBorrados.add(alquilable);
+                alquilables.remove(alquilable);
+                return true;
+            }
+
+        }
 
 
         return false;
@@ -108,6 +158,8 @@ public class Videoclub {
             for (Alquiler alquiler:fichaSocio.getAlquileresVigentes()){
                 if(alquiler.getAlquilable().equals(alquilable)){
                     alquiler.setFechaDevolucion(new GregorianCalendar());
+                    fichaSocio.devolverAlquilable(alquilable);
+                    return true;
                 }
             }
         }
@@ -121,6 +173,8 @@ public class Videoclub {
             for (Alquiler alquiler:fichaSocio.getAlquileresVigentes()){
                 if(alquiler.getAlquilable().equals(alquilable)){
                     alquiler.setFechaDevolucion(fechaDevolucion);
+                    fichaSocio.devolverAlquilable(alquilable);
+                    return true;
                 }
             }
         }
@@ -128,8 +182,27 @@ public class Videoclub {
         return false;
     }
 
+    public ArrayList<Multimedia> getMultimedia() {
+        return multimedia;
+    }
 
+    public ArrayList<Alquilable> getAlquilables() {
+        return alquilables;
+    }
 
+    public ArrayList<Socio> getSocios() {
+        return socios;
+    }
 
+    public ArrayList<FichaSocio> getFichasSocios() {
+        return fichasSocios;
+    }
 
+    public ArrayList<Multimedia> getMultimediaBorrados() {
+        return multimediaBorrados;
+    }
+
+    public ArrayList<Alquilable> getAlquilablesBorrados() {
+        return alquilablesBorrados;
+    }
 }

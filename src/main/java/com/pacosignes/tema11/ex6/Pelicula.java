@@ -1,6 +1,8 @@
 package com.pacosignes.tema11.ex6;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Pelicula extends Multimedia{
@@ -48,10 +50,12 @@ public class Pelicula extends Multimedia{
 
     @Override
     public String toString() {
+        SimpleDateFormat fechaFormat= new SimpleDateFormat("dd,MM,yyyy");
+        Date date=fechaEstreno.getTime();
         return "Pelicula{" +
                 "nombre: '" + nombre + '\'' +
                 ", autor: '" + autor + '\'' +
-                ", fechaEstreno: " + fechaEstreno +
+                ", fechaEstreno: " + fechaFormat.format(date) +
                 ", formatos: " + formatos +
                 ", genero: " + genero.toString() +
                 ", actriz principal: " + actrizPrincipal +

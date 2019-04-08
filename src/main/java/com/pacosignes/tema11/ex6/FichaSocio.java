@@ -27,4 +27,16 @@ public class FichaSocio {
     public ArrayList<Alquiler> getAlquileresVigentes() {
         return alquileresVigentes;
     }
+    protected boolean devolverAlquilable(Alquilable alquilable){
+        for (Alquiler a:alquileresVigentes
+             ) {
+            if(a.getAlquilable().equals(alquilable)){
+                alquileres.add(a);
+                alquileresVigentes.remove(a);
+                return true;
+            }
+        }
+        return false;
+
+    }
 }

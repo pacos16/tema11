@@ -1,5 +1,8 @@
 package com.pacosignes.tema11.ex6;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public abstract class Multimedia implements Comparable<Multimedia> {
@@ -49,15 +52,18 @@ public abstract class Multimedia implements Comparable<Multimedia> {
     public boolean equals(Multimedia multimedia){
 
         return multimedia.nombre.equals(this.nombre) && multimedia.autor.equals(this.autor) &&
-                multimedia.getClass().equals(this.getClass());
+                multimedia.getClass().equals(this.getClass()) && multimedia.fechaEstreno.equals(this.fechaEstreno);
     }
 
     @Override
     public String toString() {
+
+        SimpleDateFormat fechaFormat= new SimpleDateFormat("dd,MM,yyyy");
+        Date date=fechaEstreno.getTime();
         return "Multimedia{" +
                 "nombre='" + nombre + '\'' +
                 ", autor='" + autor + '\'' +
-                ", fechaEstreno=" + fechaEstreno +
+                ", fechaEstreno=" + fechaFormat.format(date) +
                 ", formatos=" + formatos +
                 '}';
     }

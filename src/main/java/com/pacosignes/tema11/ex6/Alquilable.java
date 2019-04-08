@@ -23,7 +23,7 @@ public class Alquilable {
         this.plataforma=plataforma;
     }
 
-
+    /*
     //copy constructor for game
     public Alquilable( Videojuego videojuego, Multimedia.Formato formato, Videojuego.Plataforma plataforma,int id) {
         this.id = id;
@@ -38,6 +38,7 @@ public class Alquilable {
         this.formato = formato;
         this.plataforma=null;
     }
+     */
 
     public int getId() {
         return id;

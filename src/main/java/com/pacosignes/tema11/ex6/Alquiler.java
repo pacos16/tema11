@@ -1,6 +1,7 @@
 package com.pacosignes.tema11.ex6;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -75,13 +76,40 @@ public class Alquiler implements Comparable<Alquiler>{
 
         long ms=date1.getTime() - date2.getTime();
         int dias=(int) TimeUnit.DAYS.convert(ms,TimeUnit.MICROSECONDS);
-        if(dias<Videoclub.PERIODO_ALQUILER) {
+        if(dias>Videoclub.PERIODO_ALQUILER) {
             return (dias -Videoclub.PERIODO_ALQUILER)*Videoclub.RECARGO_POR_DIA;
         }else{
             return 0;
         }
     }
 
+    public void setAlquilable(Alquilable alquilable) {
+        this.alquilable = alquilable;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat fechaFormat= new SimpleDateFormat("dd,MM,yyyy");
+        Date date=fechaAlquiler.getTime();
 
 
+
+        if(fechaDevolucion==null) {
+            return "Alquiler{" +
+                    "alquilable=" + alquilable +
+                    ", fechaAlquiler=" + fechaFormat.format(date) +
+                    ", precio base=" +precioBase +
+                    '}';
+        }else{
+            Date date1=fechaDevolucion.getTime();
+            return "Alquiler{" +
+                    "alquilable=" + alquilable +
+                    ", fechaAlquiler=" + fechaFormat.format(date) +
+                    ", fechaDevolucion= " + fechaFormat.format(date) +
+                    ", precio base=" + precioBase +
+                    ", recargo=" +recargo +
+                    '}';
+
+        }
+    }
 }
