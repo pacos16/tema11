@@ -3,10 +3,11 @@ package com.pacosignes.tema11.ex6;
 
 
 import com.github.javafaker.Faker;
+import com.pacosignes.tema11.Lib;
 
-import java.util.ArrayList;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class Main {
@@ -21,11 +22,24 @@ public class Main {
         ArrayList<Pelicula.Genero> generos=new ArrayList<>();
         formatos.add(Multimedia.Formato.ARCHIVO);
         formatos.add(Multimedia.Formato.BLUE_RAY);
+        Map<Pelicula.Genero,Integer> map=new HashMap();
+
+
+
+        //faker para socios
+        for(int i=0;i<100;i++){
+
+            videoclub.anyadirSocio(new Socio(faker.name().firstName(),faker.name().lastName(), Lib.fakerFechas("05/10/1992","08/10/2000")));
+        }
+
+
 
 
         for(int i=0;i<100;i++){
             videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),new GregorianCalendar(),faker.number().randomDigit(),faker.name().firstName(),
                     faker.name().firstName(), Pelicula.Genero.ACCION,formatos ));
+
+            System.out.println(videoclub.getSocios().get(i).toString());
         }
 
         for (Multimedia m:videoclub.getMultimedia()
@@ -46,11 +60,6 @@ public class Main {
             System.out.println(a.toString());
         }
 
-
-
-        for(int i=0;i<100;i++){
-            videoclub.anyadirSocio(new Socio(faker.name().firstName(),faker.name().lastName(),new GregorianCalendar()));
-        }
 
         System.out.println(videoclub.alquilar(videoclub.getAlquilables().get(5),videoclub.getSocios().get(5)));
 

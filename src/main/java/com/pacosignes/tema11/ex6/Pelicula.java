@@ -50,7 +50,7 @@ public class Pelicula extends Multimedia{
 
     @Override
     public String toString() {
-        SimpleDateFormat fechaFormat= new SimpleDateFormat("dd,MM,yyyy");
+        SimpleDateFormat fechaFormat= new SimpleDateFormat("dd/MM/yyyy");
         Date date=fechaEstreno.getTime();
         return "Pelicula{" +
                 "nombre: '" + nombre + '\'' +

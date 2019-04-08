@@ -79,7 +79,6 @@ public class Videoclub {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -93,12 +92,8 @@ public class Videoclub {
                 alquilables.remove(alquilable);
                 return true;
             }
-
         }
-
-
         return false;
-
     }
 
     /**

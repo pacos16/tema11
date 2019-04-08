@@ -1,5 +1,7 @@
 package com.pacosignes.tema11.ex6;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Socio {
@@ -38,5 +40,17 @@ public class Socio {
 
     public GregorianCalendar getFechaNacimiento() {
         return fechaNacimiento;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat fechaFormat= new SimpleDateFormat("dd/MM/yyyy");
+        Date date=fechaNacimiento.getTime();
+        return "Socio{" +
+                "idSocio=" + idSocio +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", fechaNacimiento=" + fechaFormat.format(date) +
+                '}';
     }
 }
