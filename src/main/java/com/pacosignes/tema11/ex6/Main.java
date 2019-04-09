@@ -223,6 +223,43 @@ public class Main {
         System.out.println("0.Salir programa");
     }
 
+    public static void alquilar(){
+        boolean existe=false;
+        int idsocio;
+        System.out.println("Dime la id del socio");{
+            try {
+                idsocio= Integer.parseInt(lector.nextLine());
+                for (Socio socio : videoclub.getSocios()
+                ) {
+                    if (socio.getIdSocio() == idsocio) {
+                        existe = true;
+                    }
+                }
+                if(!existe){
+                    System.out.println("El cliente no existe");
+                }
+            }catch (NumberFormatException nfe){
+                System.out.println("Introduce un numero");
+            }
+        }
+
+        System.out.println("Dime el id del alquilable");
+        int idAlquilable=0;
+        try{
+            idAlquilable= Integer.parseInt(lector.nextLine());
+            for (Alquilable a: videoclub.getAlquilables()
+                 ) {
+                if(idAlquilable==a.getId()){
+                    System.out.println("Es este?");
+                    System.out.println(a.toString());
+                    //todo estamos por aqui socio
+                }
+            }
+        }catch (NumberFormatException nfe){
+            System.out.println("Introduce un numero");
+        }
+    }
+
 
 
 }

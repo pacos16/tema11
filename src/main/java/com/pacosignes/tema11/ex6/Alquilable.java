@@ -1,6 +1,6 @@
 package com.pacosignes.tema11.ex6;
 
-public class Alquilable {
+public class Alquilable implements Comparable<Alquilable> {
 
     private static int autoIncremento=0;
     private int id;
@@ -75,5 +75,10 @@ public class Alquilable {
                     ", Formato=" + formato +
                     '}';
         }
+    }
+
+    @Override
+    public int compareTo(Alquilable o) {
+        return this.id-o.id;
     }
 }
