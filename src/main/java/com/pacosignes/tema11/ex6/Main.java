@@ -13,7 +13,7 @@ import java.util.*;
 public class Main {
 
     static Videoclub videoclub=new Videoclub();
-
+    static Scanner lector=new Scanner(System.in);
 
 
     public static void main(String[] args) {
@@ -84,8 +84,136 @@ public class Main {
                 System.out.println(a.toString());
             }
         }
+        int opcion=0;
+        do{
+            do{
+                menuPrincipal();
+                try{
+                    opcion=Integer.parseInt(lector.nextLine());
+                }catch(NumberFormatException nfe){
+                    System.out.println("Introduce un numero correcto");
+                    opcion=-1;
+                }
+                if(opcion<0 || opcion >4){
+                    System.out.println("Introduce un numero correcto");
+                }
+            }while(opcion<0 || opcion >4);
+
+
+            switch (opcion){
+                case 1:
+                    int opcion1=-1;
+                    do{
+                        System.out.println("ALQUILAR/DEVOLVER");
+                        System.out.println("-----------------");
+                        System.out.println("1.Alquilar");
+                        System.out.println("2.Devolver");
+                        System.out.println("----------");
+                        System.out.println("0.Volver");
+                        try {
+                            opcion1 = Integer.parseInt(lector.nextLine());
+                            if(opcion1<0 || opcion1>2){
+                                System.out.println("Introduce un numero de la lista");
+                            }else{
+                                if(opcion1==1){
+                                    //todo alquilar();
+                                }else if (opcion1==2){
+                                    //todo devolver();
+                                }
+                            }
+                        }catch (NumberFormatException nfe){
+                            System.out.println("Introduce un numero porfavor");
+                        }
+                    }while (opcion1!=0);
+                    break;
+                case 2:
+                    int opcion2=-1;
+                    do {
+                        System.out.println("MULTIMEDIA");
+                        System.out.println("----------");
+                        System.out.println("1.Anyadir");
+                        System.out.println("2.Borrar");
+                        System.out.println("--------");
+                        System.out.println("0.Volver");
+                        try {
+                            opcion2 = Integer.parseInt(lector.nextLine());
+                            if (opcion2 < 0 || opcion2 > 2) {
+                                System.out.println("Introduce un numero de la lista");
+                            } else {
+                                if (opcion2 == 1) {
+                                    //todo anyadirMultimedia();
+                                } else if (opcion2 == 2) {
+                                    //todo borrarMultimedia();
+                                }
+                            }
+                        } catch (NumberFormatException nfe) {
+                            System.out.println("Introduce un numero porfavor");
+                        }
+                    }while(opcion2!=0);
+                    break;
+                case 3:
+                    int opcion3=-1;
+                    do {
+                        System.out.println("SOCIOS");
+                        System.out.println("----------");
+                        System.out.println("1.Anyadir");
+                        System.out.println("2.Borrar");
+                        System.out.println("--------");
+                        System.out.println("0.Volver");
+                        try {
+                            opcion3 = Integer.parseInt(lector.nextLine());
+                            if (opcion3 < 0 || opcion3 > 2) {
+                                System.out.println("Introduce un numero de la lista");
+                            } else {
+                                if (opcion3 == 1) {
+                                    //todo anyadirSocio();
+                                } else if (opcion3 == 2) {
+                                    //todo borrarSocio();
+                                }
+                            }
+                        } catch (NumberFormatException nfe) {
+                            System.out.println("Introduce un numero porfavor");
+                        }
+                    }while(opcion3!=0);
+                    break;
+                case 4:
+                    int opcion4=-1;
+                    do{
+                        System.out.println("INFORMES");
+                        System.out.println("--------");
+                        System.out.println("1.Todos los Multimedia");
+                        System.out.println("2.Todos los Alquilables");
+                        System.out.println("3.Peliculas por titulo");
+                        System.out.println("4.Videojuegos por anyo");
+                        System.out.println("5.Historicos de alquiler de socio");
+                        System.out.println("6.Listado de socios con recargo");
+                        try{
+                            opcion4= Integer.parseInt(lector.nextLine());
+
+                        }catch (NumberFormatException nfe){
+                            System.out.println("Number format exception");
+                        }
+                        switch (opcion4){
+
+                        }
+                    }while(opcion4!=0);
+            }
+
+
+        }while(opcion!=0);
     }
 
 
+    public static void menuPrincipal(){
+        System.out.println("  Videoclub");
+        System.out.println("  ---------");
+        System.out.println("1.Alquilar/devolver");
+        System.out.println("2.Multimedia");
+        System.out.println("3.Socios");
+        System.out.println("4.Informes");
+        System.out.println("-------------");
+        System.out.println("0.Salir programa");
+    }
 
 }
+

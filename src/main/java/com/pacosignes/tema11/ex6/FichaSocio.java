@@ -39,4 +39,22 @@ public class FichaSocio {
         return false;
 
     }
+
+    @Override
+    public String toString() {
+        if(socio!=null) {
+            return "FichaSocio{" +
+                    "socio=" + socio +
+                    ", alquileres=" + alquileres +
+                    ", alquileresVigentes=" + alquileresVigentes +
+                    '}';
+        }else{
+            return  "FichaSocio{" +
+                    "socio= Socio Eliminado , " +
+                    "alquileres=" + alquileres +
+                    ", alquileresVigentes=" + alquileresVigentes +
+                    '}';
+
+        }
+    }
 }
