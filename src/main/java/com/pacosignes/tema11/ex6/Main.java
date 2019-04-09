@@ -41,7 +41,7 @@ public class Main {
 
             System.out.println(videoclub.getSocios().get(i).toString());
         }
-
+        Collections.sort(videoclub.getMultimedia());
         for (Multimedia m:videoclub.getMultimedia()
              ) {
             System.out.println(m.toString());
@@ -84,6 +84,14 @@ public class Main {
                 System.out.println(a.toString());
             }
         }
+
+        videoclub.getMultimedia().sort(new Multimedia.ComparatorFecha());
+
+        for (Multimedia m:videoclub.getMultimedia()
+        ) {
+            System.out.println(m.toString());
+        }
+        //aqui
         int opcion=0;
         do{
             do{
@@ -214,6 +222,8 @@ public class Main {
         System.out.println("-------------");
         System.out.println("0.Salir programa");
     }
+
+
 
 }
 

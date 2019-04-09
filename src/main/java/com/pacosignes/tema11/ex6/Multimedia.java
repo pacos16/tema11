@@ -1,9 +1,6 @@
 package com.pacosignes.tema11.ex6;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 public abstract class Multimedia implements Comparable<Multimedia> {
 
@@ -72,5 +69,16 @@ public abstract class Multimedia implements Comparable<Multimedia> {
     public int compareTo(Multimedia multimedia){
 
         return this.nombre.compareTo(multimedia.nombre);
+    }
+    public static class ComparatorFecha implements Comparator<Multimedia> {
+
+
+        public int compare(Multimedia o,Multimedia o1) {
+                if(o.fechaEstreno.before(o1.fechaEstreno)){
+                    return 1;
+                }else{
+                    return -1;
+                }
+        }
     }
 }
