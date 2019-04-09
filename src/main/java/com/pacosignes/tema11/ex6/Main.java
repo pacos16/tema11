@@ -36,7 +36,7 @@ public class Main {
 
 
         for(int i=0;i<100;i++){
-            videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),new GregorianCalendar(),faker.number().randomDigit(),faker.name().firstName(),
+            videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),Lib.fakerFechas("05/10/2000","08/10/2018"),faker.number().randomDigit(),faker.name().firstName(),
                     faker.name().firstName(), Pelicula.Genero.ACCION,formatos ));
 
             System.out.println(videoclub.getSocios().get(i).toString());
