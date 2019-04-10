@@ -279,6 +279,7 @@ public class Main {
                                      ) {
                                     if(ficha.getAlquileresVigentes().size()>0){
                                         System.out.println(ficha.getSocio().toString());
+                                        System.out.print(" ");
                                         System.out.println(ficha.getAlquileresVigentes().toString());
                                     }
                                 }

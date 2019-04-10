@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62769b30-4473-4a26-a4de-ef333bbf3fca" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/pacosignes/tema11/Lib.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/pacosignes/tema11/Lib.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/pacosignes/tema11/ex6/Alquilable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/pacosignes/tema11/ex6/Alquilable.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/pacosignes/tema11/ex6/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/com/pacosignes/tema11/ex6/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/Lib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/Lib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex6/Alquilable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex6/Alquilable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex6/Alquiler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex6/Alquiler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex6/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex6/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -86,8 +79,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex6/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="377" column="50" selection-start-line="377" selection-start-column="50" selection-end-line="377" selection-end-column="50" />
+            <state relative-caret-position="308">
+              <caret line="281" column="59" selection-start-line="281" selection-start-column="59" selection-end-line="281" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -392,7 +385,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.17717478" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -403,7 +395,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3220339" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3220339" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39739415" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -774,8 +766,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pacosignes/tema11/ex6/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="377" column="50" selection-start-line="377" selection-start-column="50" selection-end-line="377" selection-end-column="50" />
+        <state relative-caret-position="308">
+          <caret line="281" column="59" selection-start-line="281" selection-start-column="59" selection-end-line="281" selection-end-column="59" />
         </state>
       </provider>
     </entry>
