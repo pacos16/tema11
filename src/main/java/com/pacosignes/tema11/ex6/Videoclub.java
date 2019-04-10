@@ -115,6 +115,8 @@ public class Videoclub {
         if(!disponible){
             return false;
         }
+
+
         //comprueba que el articulo no esta actualmente alquilado
         for (FichaSocio ficha: fichasSocios
              ) {

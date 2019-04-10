@@ -4,9 +4,6 @@ package com.pacosignes.tema11.ex6;
 
 import com.github.javafaker.Faker;
 import com.pacosignes.tema11.Lib;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -124,9 +121,9 @@ public class Main {
                                 System.out.println("Introduce un numero de la lista");
                             }else{
                                 if(opcion1==1){
-                                    //todo alquilar();
+                                    alquilar();
                                 }else if (opcion1==2){
-                                    //todo devolver();
+                                    devolver();
                                 }
                             }
                         }catch (NumberFormatException nfe){
@@ -194,7 +191,9 @@ public class Main {
                         System.out.println("3.Peliculas por titulo");
                         System.out.println("4.Videojuegos por anyo");
                         System.out.println("5.Historicos de alquiler de socio");
-                        System.out.println("6.Listado de socios con recargo");
+                        System.out.println("6.Listado de socios con recargo pendiente");
+                        System.out.println("--------------------------------");
+                        System.out.println("0.Volver");
                         try{
                             opcion4= Integer.parseInt(lector.nextLine());
 
@@ -226,41 +225,133 @@ public class Main {
     public static void alquilar(){
         boolean existe=false;
         int idsocio;
-        System.out.println("Dime la id del socio");{
-            try {
-                idsocio= Integer.parseInt(lector.nextLine());
-                for (Socio socio : videoclub.getSocios()
-                ) {
-                    if (socio.getIdSocio() == idsocio) {
-                        existe = true;
+        Socio socio1=videoclub.getSocios().get(0);
+        Alquilable alquilable1;
+        System.out.println("Dime la id del socio");
+        do{
+            boolean numero=false;
+            do {
+                try {
+                    idsocio = Integer.parseInt(lector.nextLine());
+                    numero=true;
+                } catch (NumberFormatException nfe) {
+                    System.out.println("Introduce un numero");
+                    idsocio=0;
+
+                }
+            }while (!numero);
+            for (Socio socio : videoclub.getSocios()
+            ) {
+                if (socio.getIdSocio() == idsocio) {
+
+                    socio1=socio;
+                    existe = true;
+                    System.out.println("El socio es "+socio.toString());
+                    Lib.pausa();
+                }
+            }
+            if(!existe){
+
+                System.out.println("El cliente no existe");
+                Lib.pausa();
+
+            }
+
+        }while(!existe);
+        for (FichaSocio ficha:videoclub.getFichasSocios()
+             ) {
+            if(socio1.equals(ficha.getSocio())){
+                for (Alquiler a : ficha.getAlquileresVigentes()
+                     ) {
+                    if(0<a.calcularRecargo(new GregorianCalendar())){
+                        System.out.println("Este socio tiene recargos pendientes , debe abonar " + a.calcularRecargo(new GregorianCalendar()));
                     }
                 }
-                if(!existe){
-                    System.out.println("El cliente no existe");
-                }
-            }catch (NumberFormatException nfe){
-                System.out.println("Introduce un numero");
             }
         }
+        boolean encontrado=false;
 
-        System.out.println("Dime el id del alquilable");
-        int idAlquilable=0;
-        try{
-            idAlquilable= Integer.parseInt(lector.nextLine());
-            for (Alquilable a: videoclub.getAlquilables()
-                 ) {
-                if(idAlquilable==a.getId()){
-                    System.out.println("Es este?");
-                    System.out.println(a.toString());
-                    //todo estamos por aqui socio
+        do {
+            System.out.println("Dime el id del alquilable");
+            int idAlquilable = 0;
+            try {
+                idAlquilable = Integer.parseInt(lector.nextLine());
+                for (Alquilable a : videoclub.getAlquilables()
+                ) {
+                    if (idAlquilable == a.getId()) {
+                        boolean correcto;
+                        System.out.println("Este es su alquilable");
+                        encontrado=true;
+                        System.out.println(a.toString());
+                        Lib.pausa();
+                        correcto=videoclub.alquilar(a, socio1);
+                        if(correcto){
+                            System.out.println("Alquilado con exito");
+                            Lib.pausa();
+                            Lib.limpiarPantalla();
+                        }else{
+                            System.out.println("Error al alquilar");
+                        }
+
+                    }
                 }
+            } catch (NumberFormatException nfe) {
+                System.out.println("Introduce un numero por favor");
+                Lib.pausa();
             }
-        }catch (NumberFormatException nfe){
-            System.out.println("Introduce un numero");
-        }
+            if(!encontrado){
+                System.out.println("El alquilable no existe, introduzca otro");
+                Lib.pausa();
+            }
+        }while (!encontrado);
     }
 
+    public static void devolver(){
+        int id=0;
+        do {
+            System.out.println("Dime el id del alquilable");
+            try {
+                id = Integer.parseInt(lector.nextLine());
+
+            } catch (NumberFormatException nfe) {
+                System.out.println("Introduce un numero");
+            }
+        }while (id==0);
+
+        if(id>0){
+            for (FichaSocio ficha: videoclub.getFichasSocios()
+            ) {
+                for (Alquiler a:ficha.getAlquileresVigentes()
+                ) {
+                    if (a.getAlquilable().getId()==id){
+
+                        if(videoclub.devolverAlquilable(a.getAlquilable())){
+
+                            System.out.println(ficha.getSocio().toString());
+                            System.out.println(a.getAlquilable().toString());
+                            System.out.println("El recargo es: " + a.calcularRecargo(new GregorianCalendar()));
+                            Lib.pausa();
+                            System.out.println("Devuelto con exito");
+
+                            Lib.pausa();
+                            return ;
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("No encontrado");
+        Lib.pausa();
+    }
+
+    public static void anyadirMultimedia(){
 
 
+
+    }
 }
+
+
+
+
 
