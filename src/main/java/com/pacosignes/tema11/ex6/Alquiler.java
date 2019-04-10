@@ -99,7 +99,7 @@ public class Alquiler implements Comparable<Alquiler>{
                     "alquilable=" + alquilable +
                     ", fechaAlquiler=" + fechaFormat.format(date) +
                     ", precio base=" +precioBase +
-                    '}';
+                    "}\n";
         }else{
             Date date1=fechaDevolucion.getTime();
             return "Alquiler{" +
@@ -108,7 +108,7 @@ public class Alquiler implements Comparable<Alquiler>{
                     ", fechaDevolucion= " + fechaFormat.format(date) +
                     ", precio base=" + precioBase +
                     ", recargo=" +recargo +
-                    '}';
+                    "}\n";
 
         }
     }

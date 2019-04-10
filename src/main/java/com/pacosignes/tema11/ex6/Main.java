@@ -26,14 +26,16 @@ public class Main {
         //faker para socios
         for(int i=0;i<100;i++){
 
-            videoclub.anyadirSocio(new Socio(faker.name().firstName(),faker.name().lastName(), Lib.fakerFechas("05/10/1992","08/10/2000")));
+            videoclub.anyadirSocio(new Socio(faker.name().firstName(),faker.name().lastName(),
+                    Lib.fakerFechas("05/10/1992","08/10/2000")));
         }
 
 
 
 
         for(int i=0;i<100;i++){
-            videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),Lib.fakerFechas("05/10/2000","08/10/2018"),faker.number().randomDigit(),faker.name().firstName(),
+            videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),
+                    Lib.fakerFechas("05/10/2000","08/10/2018"),faker.number().randomDigit(),faker.name().firstName(),
                     faker.name().firstName(), Pelicula.Genero.ACCION,formatos ));
 
             System.out.println(videoclub.getSocios().get(i).toString());
@@ -192,16 +194,96 @@ public class Main {
                         System.out.println("4.Videojuegos por anyo");
                         System.out.println("5.Historicos de alquiler de socio");
                         System.out.println("6.Listado de socios con recargo pendiente");
+                        System.out.println("7.Alquileres vigentes");
                         System.out.println("--------------------------------");
                         System.out.println("0.Volver");
-                        try{
-                            opcion4= Integer.parseInt(lector.nextLine());
-
-                        }catch (NumberFormatException nfe){
-                            System.out.println("Number format exception");
-                        }
+                        opcion4=Lib.pedirInt(0,7);
                         switch (opcion4){
+                            case 1:
+                                //ordena por nombre
+                                Collections.sort(videoclub.getMultimedia());
+                                //imprime multimedia
+                                for (Multimedia multimedia:videoclub.getMultimedia()
+                                     ) {
+                                    System.out.println(multimedia.toString());
+                                }
+                                Lib.pausa();
+                                break;
+                            case 2:
+                                //ordena alqulables por nombre
+                                videoclub.getAlquilables().sort(new Alquilable.ComparatorNombre());
+                                //imprime
+                                for (Alquilable alquilable: videoclub.getAlquilables()
+                                     ) {
+                                    System.out.println(alquilable.toString());
+                                }
+                                Lib.pausa();
+                                break;
+                            case 3:
+                                //ordena multimedia por nombre
+                                Collections.sort(videoclub.getMultimedia());
+                                //imprime peliculas
+                                for (Multimedia multimedia:videoclub.getMultimedia()
+                                ) {
+                                    if( multimedia instanceof Pelicula) {
+                                        System.out.println(multimedia.toString());
+                                    }
+                                }
+                                Lib.pausa();
+                                break;
+                            case 4:
+                                //ordena por fecha
+                                videoclub.getMultimedia().sort(new Multimedia.ComparatorFecha());
+                                //imprime Videojuegos
+                                for (Multimedia multimedia:videoclub.getMultimedia()
+                                ) {
+                                    if( multimedia instanceof Videojuego) {
+                                        System.out.println(multimedia.toString());
+                                    }
+                                }
+                                Lib.pausa();
+                                break;
+                            case 5:
 
+                                for (FichaSocio ficha:videoclub.getFichasSocios()
+                                     ) {
+                                    System.out.println(ficha.getSocio().toString());
+                                    System.out.println(ficha.getAlquileres().toString());
+                                }
+                                Lib.pausa();
+                                break;
+                            case 6:
+                                int recargo=0;
+                                for (FichaSocio ficha: videoclub.getFichasSocios()
+                                     ) {
+                                    for (Alquiler alquiler:ficha.getAlquileresVigentes()
+                                         ) {
+                                        recargo+=alquiler.calcularRecargo(new GregorianCalendar());
+                                    }
+                                    if(recargo>0){
+                                        System.out.println(ficha.getSocio().toString());
+                                        for (Alquiler alquiler: ficha.getAlquileres()
+                                             ) {
+                                            if(alquiler.calcularRecargo(new GregorianCalendar())>0){
+                                                System.out.println(alquiler.toString()+
+                                                        " Recargo: "+alquiler.calcularRecargo(new GregorianCalendar()));
+                                            }
+                                        }
+                                    }
+
+                                }
+                                Lib.pausa();
+                                break;
+                            case 7:
+                                for (FichaSocio ficha:videoclub.getFichasSocios()
+                                     ) {
+                                    if(ficha.getAlquileresVigentes().size()>0){
+                                        System.out.println(ficha.getSocio().toString());
+                                        System.out.println(ficha.getAlquileresVigentes().toString());
+                                    }
+                                }
+                                Lib.pausa();
+                                break;
                         }
                     }while(opcion4!=0);
             }
@@ -264,7 +346,8 @@ public class Main {
                 for (Alquiler a : ficha.getAlquileresVigentes()
                      ) {
                     if(0<a.calcularRecargo(new GregorianCalendar())){
-                        System.out.println("Este socio tiene recargos pendientes , debe abonar " + a.calcularRecargo(new GregorianCalendar()));
+                        System.out.println("Este socio tiene recargos pendientes , debe abonar "
+                                + a.calcularRecargo(new GregorianCalendar()));
                     }
                 }
             }
@@ -291,6 +374,8 @@ public class Main {
                             Lib.limpiarPantalla();
                         }else{
                             System.out.println("Error al alquilar");
+                            Lib.pausa();
+                            Lib.limpiarPantalla();
                         }
 
                     }

@@ -1,5 +1,7 @@
 package com.pacosignes.tema11.ex6;
 
+import java.util.Comparator;
+
 public class Alquilable implements Comparable<Alquilable> {
 
     private static int autoIncremento=0;
@@ -80,5 +82,11 @@ public class Alquilable implements Comparable<Alquilable> {
     @Override
     public int compareTo(Alquilable o) {
         return this.id-o.id;
+    }
+    public static class ComparatorNombre implements Comparator<Alquilable>{
+
+        public int compare(Alquilable o, Alquilable o1){
+            return o.getMultimedia().getNombre().compareTo(o1.getMultimedia().getNombre());
+        }
     }
 }

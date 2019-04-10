@@ -65,5 +65,24 @@ public class Lib {
         lector.nextLine();
     }
 
+    public static int pedirInt(int min, int max){
+        int opcion;
+        boolean correcto;
+        do{
+            correcto=false;
+            try{
+                opcion= Integer.parseInt(lector.nextLine());
+                correcto=true;
+            }catch (NumberFormatException nfe){
+                System.out.println("Solo puede introducir numeros");
+                opcion=min-1;
+            }
+            if(opcion<min || opcion >max){
+                System.out.println("El numero no esta en el rango de opciones");
+            }
+        }while(!correcto && (opcion<min || opcion >max));
+        return opcion;
+    }
+
 
 }
