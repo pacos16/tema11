@@ -18,13 +18,8 @@ public class Main {
     public static void main(String[] args) {
         Faker faker=new Faker(new Locale("es"));
         ArrayList<Multimedia.Formato> formatos=new ArrayList<>();
-        ArrayList<Pelicula.Genero> generos=new ArrayList<>();
         formatos.add(Multimedia.Formato.ARCHIVO);
         formatos.add(Multimedia.Formato.BLUE_RAY);
-        Map<Pelicula.Genero,Integer> map=new HashMap();
-
-
-
         //faker para socios
         for(int i=0;i<100;i++){
 
