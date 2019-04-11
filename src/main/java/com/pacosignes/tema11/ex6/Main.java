@@ -38,10 +38,6 @@ public class Main {
                     faker.name().firstName(), Pelicula.Genero.ACCION,formatos ));
         }
         Collections.sort(videoclub.getMultimedia());
-        for (Multimedia m:videoclub.getMultimedia()
-             ) {
-            System.out.println(m.toString());
-        }
 
 
         for (Multimedia m:videoclub.getMultimedia()
@@ -110,7 +106,7 @@ public class Main {
                                 System.out.println("Introduce un numero de la lista");
                             } else {
                                 if (opcion2 == 1) {
-                                    //todo anyadirMultimedia();
+                                    anyadirMultimedia();
                                 } else if (opcion2 == 2) {
                                     //todo borrarMultimedia();
                                 }
@@ -160,6 +156,7 @@ public class Main {
                         System.out.println("--------------------------------");
                         System.out.println("0.Volver");
                         opcion4=Lib.pedirInt(0,7);
+                        //todo pasar metodos a videoclub??
                         switch (opcion4){
                             case 1:
                                 //ordena por nombre
@@ -416,12 +413,56 @@ public class Main {
                     opcion2 = Lib.pedirInt(0, 2);
 
                     if (opcion2 == 1) {
-
+                        anyadirPelicula();
                     }else if(opcion2==2){
-
+                        String titulo;
+                        String autor;
+                        boolean encontrada;
+                        Pelicula p=null;
+                        do{
+                            encontrada=false;
+                            System.out.println("**Introduzca los datos de la pelicula**");
+                            System.out.println("Dime el titulo");
+                            titulo= lector.nextLine();
+                            System.out.println("Dime el autor");
+                            autor= lector.nextLine();
+                            for (Multimedia multimedia: videoclub.getMultimedia()
+                                 ) {
+                                if(multimedia.getNombre().toLowerCase().equals(titulo) &&
+                                multimedia.getAutor().toLowerCase().equals(autor) && multimedia instanceof Pelicula){
+                                    encontrada=true;
+                                    p=(Pelicula)multimedia;
+                                }
+                            }
+                            if(!encontrada){
+                                System.out.println("Esta pelicula no esta en la base de datos");
+                                Lib.pausa();
+                            }
+                        }while(!encontrada);
+                        boolean disponible;
+                        int opcionFormato;
+                        do{
+                            disponible=false;
+                            System.out.println("*Elige un formato*");
+                            opcionFormato=seleccionarFormato();
+                            for (Multimedia.Formato formato :p.formatos
+                                 ) {
+                                if(formato.ordinal()==opcionFormato-1){
+                                    disponible=true;
+                                    videoclub.getAlquilables().add(new Alquilable(p,formato));
+                                    System.out.println("Alquilable anyadido con exito");
+                                }
+                            }
+                            if(!disponible){
+                                System.out.println("Este formato no esta disponible");
+                                Lib.pausa();
+                            }
+                        }while (!disponible);
                     }
 
                 } while (opcion2 != 0);
+
+
             }else if(opcion==2){
 
             }
@@ -432,7 +473,7 @@ public class Main {
     public static void anyadirPelicula(){
         String nombre;
         String autor;
-        GregorianCalendar fechaEstreno;
+        GregorianCalendar fechaEstreno=new GregorianCalendar();
         int duracion;
         String actriz;
         String actor;
@@ -464,6 +505,20 @@ public class Main {
         int opcion;
 
 
+        System.out.println("Dime la duracion");
+        duracion= Lib.pedirInt(1,1000);
+        do{
+            System.out.println("Dime la actriz principal");
+            actriz= lector.nextLine();
+
+        }while (actriz.length()<1);
+        do{
+            System.out.println("Dime el actor principal");
+            actor= lector.nextLine();
+
+        }while (actor.length()<1);
+
+
          System.out.println("Genero");
          for (Pelicula.Genero g: Pelicula.Genero.values()
                  ) {
@@ -474,19 +529,42 @@ public class Main {
          genero= Pelicula.Genero.values()[opcion];
          int opcion2;
          do{
-             System.out.println("Dime los formatos(minimo 1)");
-             for (Multimedia.Formato f: Multimedia.Formato.values()
-                  ) {
-                 System.out.println(f.ordinal()+" "+f.toString());
+             opcion2=seleccionarFormato();
+             if(opcion2!=0){
+                 boolean noEsta=true;
+                 for (Multimedia.Formato format:formatos
+                 ) {
+                     if(format.equals(Multimedia.Formato.values()[opcion2-1])){
+                         noEsta=false;
+                         System.out.println("Este formato ya esta");
+                     }
+                 }
+                 if(noEsta){
+                     formatos.add(Multimedia.Formato.values()[opcion2-1]);
+                 }
              }
-             System.out.println("--------------");
-             System.out.println("-1. Para parar");
-             opcion2= Lib.pedirInt((-1),Multimedia.Formato.values().length-1);
-             formatos.add(Multimedia.Formato.values()[opcion2]);
 
-         }while(opcion2!=(-1) && formatos.size()==0);
 
-         videoclub.getMultimedia().add(new Pelicula(nombre,autor,fechaEstreno,genero,formatos))
+         }while(opcion2!=0 || formatos.size()==0);
+
+         videoclub.getMultimedia().add(new Pelicula(nombre,autor,fechaEstreno,duracion,actriz,actor,genero,formatos));
+        System.out.println("Pelicula creada con exito");
+        Lib.pausa();
+    }
+
+    /**
+     * Devuelve el formato con su numero integer no con su numero ordinal, para ello le restaremos uno luego
+     * @return
+     */
+    public static int seleccionarFormato(){
+
+        for (Multimedia.Formato f: Multimedia.Formato.values()
+        ) {
+            System.out.println(f.getPosicion()+" "+f.toString());
+        }
+        System.out.println("--------------");
+        System.out.println("0. Para continuar");
+        return Lib.pedirInt(0,Multimedia.Formato.values().length);
     }
 
 

@@ -80,7 +80,7 @@ public class Lib {
             if(opcion<min || opcion >max){
                 System.out.println("El numero no esta en el rango de opciones");
             }
-        }while(!correcto && (opcion<min || opcion >max));
+        }while(!correcto || (opcion<min || opcion >max));
         return opcion;
     }
 

@@ -5,12 +5,16 @@ import java.util.*;
 public abstract class Multimedia implements Comparable<Multimedia> {
 
     public enum Formato {
-        CD("Compact Disc"),DVD("DVD"),BLUE_RAY("Blue Ray"),ARCHIVO("Archivo");
+        CD("Compact Disc",1),DVD("DVD",2),BLUE_RAY("Blue Ray",3),ARCHIVO("Archivo",4);
         private String nombre;
-        Formato(String nombre){
+        private int posicion;
+        Formato(String nombre, int posicion){
             this.nombre=nombre;
+            this.posicion=posicion;
         }
-
+        public int getPosicion(){
+            return  posicion;
+        }
         @Override
         public String toString() {
             return nombre;
