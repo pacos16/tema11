@@ -433,8 +433,11 @@ public class Main {
         String nombre;
         String autor;
         GregorianCalendar fechaEstreno;
+        int duracion;
+        String actriz;
+        String actor;
         Pelicula.Genero genero;
-        ArrayList<Multimedia.Formato> formatos;
+        ArrayList<Multimedia.Formato> formatos=new ArrayList<>();
 
         do{
             System.out.println("Dime el titulo");
@@ -461,18 +464,29 @@ public class Main {
         int opcion;
 
 
-        System.out.println("Genero");
-        for (Pelicula.Genero g: Pelicula.Genero.values()
+         System.out.println("Genero");
+         for (Pelicula.Genero g: Pelicula.Genero.values()
                  ) {
-            System.out.println(g.ordinal()+" "+g.toString());
-        }
-        opcion=Lib.pedirInt(0, Pelicula.Genero.values().length-1);
+             System.out.println(g.ordinal()+" "+g.toString());
+         }
+         opcion=Lib.pedirInt(0, Pelicula.Genero.values().length-1);
 
          genero= Pelicula.Genero.values()[opcion];
-
+         int opcion2;
          do{
-             
-         }
+             System.out.println("Dime los formatos(minimo 1)");
+             for (Multimedia.Formato f: Multimedia.Formato.values()
+                  ) {
+                 System.out.println(f.ordinal()+" "+f.toString());
+             }
+             System.out.println("--------------");
+             System.out.println("-1. Para parar");
+             opcion2= Lib.pedirInt((-1),Multimedia.Formato.values().length-1);
+             formatos.add(Multimedia.Formato.values()[opcion2]);
+
+         }while(opcion2!=(-1) && formatos.size()==0);
+
+         videoclub.getMultimedia().add(new Pelicula(nombre,autor,fechaEstreno,genero,formatos))
     }
 
 
