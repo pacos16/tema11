@@ -16,6 +16,8 @@ public class Pelicula extends Multimedia{
         Genero(String nombre){
             this.nombre=nombre;
         }
+
+
     }
 
     private int duracion;

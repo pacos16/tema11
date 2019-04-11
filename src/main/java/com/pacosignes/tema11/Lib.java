@@ -84,5 +84,18 @@ public class Lib {
         return opcion;
     }
 
+    public static boolean validarFecha(String fecha){
+
+        try{
+            SimpleDateFormat formatoFecha;
+            formatoFecha= new SimpleDateFormat("dd/MM/yyyy");
+            formatoFecha.setLenient(false);
+            formatoFecha.parse(fecha);
+        }catch (ParseException pe){
+            return false;
+        }
+        return true;
+    }
+
 
 }

@@ -4,6 +4,8 @@ package com.pacosignes.tema11.ex6;
 
 import com.github.javafaker.Faker;
 import com.pacosignes.tema11.Lib;
+
+import java.sql.SQLOutput;
 import java.util.*;
 
 
@@ -29,16 +31,11 @@ public class Main {
             videoclub.anyadirSocio(new Socio(faker.name().firstName(),faker.name().lastName(),
                     Lib.fakerFechas("05/10/1992","08/10/2000")));
         }
-
-
-
-
+        //faker para pelis
         for(int i=0;i<100;i++){
             videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),
                     Lib.fakerFechas("05/10/2000","08/10/2018"),faker.number().randomDigit(),faker.name().firstName(),
                     faker.name().firstName(), Pelicula.Genero.ACCION,formatos ));
-
-            System.out.println(videoclub.getSocios().get(i).toString());
         }
         Collections.sort(videoclub.getMultimedia());
         for (Multimedia m:videoclub.getMultimedia()
@@ -54,42 +51,7 @@ public class Main {
                 videoclub.anyadirAlquilable(new Alquilable((Pelicula)m,formato));
             }
         }
-        for (Alquilable a:videoclub.getAlquilables()
-             ) {
-            System.out.println(a.toString());
-        }
 
-
-        System.out.println(videoclub.alquilar(videoclub.getAlquilables().get(5),videoclub.getSocios().get(5)));
-
-        for (FichaSocio ficha:videoclub.getFichasSocios()
-             ) {
-            for (Alquiler a: ficha.getAlquileresVigentes()
-                 ) {
-                System.out.println(a.toString());
-            }
-        }
-
-        System.out.println(videoclub.devolverAlquilable(videoclub.getAlquilables().get(5)));
-        for (FichaSocio ficha:videoclub.getFichasSocios()
-        ) {
-            for (Alquiler a: ficha.getAlquileresVigentes()
-            ) {
-                System.out.println(a.toString());
-            }
-        }
-        for(FichaSocio ficha: videoclub.getFichasSocios()){
-            for(Alquiler a: ficha.getAlquileres()){
-                System.out.println(a.toString());
-            }
-        }
-
-        videoclub.getMultimedia().sort(new Multimedia.ComparatorFecha());
-
-        for (Multimedia m:videoclub.getMultimedia()
-        ) {
-            System.out.println(m.toString());
-        }
         //aqui
         int opcion=0;
         do{
@@ -156,7 +118,7 @@ public class Main {
                         } catch (NumberFormatException nfe) {
                             System.out.println("Introduce un numero porfavor");
                         }
-                    }while(opcion2!=0);
+                    }while(opcion2 < 0 || opcion2 > 2);
                     break;
                 case 3:
                     int opcion3=-1;
@@ -312,8 +274,11 @@ public class Main {
         Alquilable alquilable1;
         System.out.println("Dime la id del socio");
         do{
-            boolean numero=false;
+            boolean numero;
+
             do {
+
+                numero=false;
                 try {
                     idsocio = Integer.parseInt(lector.nextLine());
                     numero=true;
@@ -431,10 +396,86 @@ public class Main {
     }
 
     public static void anyadirMultimedia(){
+        int opcion;
+        do{
+            System.out.println("Elige una opcion");
+            System.out.println("1.Pelicula");
+            System.out.println("2.Videojuego");
+            System.out.println("------------");
+            System.out.println("0.Volver");
+            opcion=Lib.pedirInt(0,2);
 
 
+            int opcion2=0;
+            if(opcion==1) {
+                do {
+                    System.out.println("1.Nueva pelicula");
+                    System.out.println("2.Alquilable desde pelicula ");
+                    System.out.println("---------------------");
+                    System.out.println("0.Volver");
+                    opcion2 = Lib.pedirInt(0, 2);
+
+                    if (opcion2 == 1) {
+
+                    }else if(opcion2==2){
+
+                    }
+
+                } while (opcion2 != 0);
+            }else if(opcion==2){
+
+            }
+        }while(opcion!=0);
 
     }
+
+    public static void anyadirPelicula(){
+        String nombre;
+        String autor;
+        GregorianCalendar fechaEstreno;
+        Pelicula.Genero genero;
+        ArrayList<Multimedia.Formato> formatos;
+
+        do{
+            System.out.println("Dime el titulo");
+            nombre= lector.nextLine();
+
+        }while (nombre.length()<1);
+        do{
+            System.out.println("Dime el autor");
+            autor= lector.nextLine();
+
+        }while (autor.length()<1);
+        String fecha;
+        do{
+            System.out.println("Dime una fecha de estreno en formato dd/mm/yyyy");
+            fecha= lector.nextLine();
+            if(Lib.validarFecha(fecha)){
+                fechaEstreno=Lib.gregorianFromString(fecha);
+            }
+            if(!Lib.validarFecha(fecha)){
+                System.out.println("La fecha no es valida");
+            }
+
+        }while (!Lib.validarFecha(fecha));
+        int opcion;
+
+
+        System.out.println("Genero");
+        for (Pelicula.Genero g: Pelicula.Genero.values()
+                 ) {
+            System.out.println(g.ordinal()+" "+g.toString());
+        }
+        opcion=Lib.pedirInt(0, Pelicula.Genero.values().length-1);
+
+         genero= Pelicula.Genero.values()[opcion];
+
+         do{
+             
+         }
+    }
+
+
 }
 
 
