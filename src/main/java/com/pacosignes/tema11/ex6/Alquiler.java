@@ -74,8 +74,8 @@ public class Alquiler implements Comparable<Alquiler>{
         Date date1=fechaAlquiler.getTime();
         Date date2=fechaDevolucion.getTime();
 
-        long ms=date1.getTime() - date2.getTime();
-        int dias=(int) TimeUnit.DAYS.convert(ms,TimeUnit.MICROSECONDS);
+        long ms=date2.getTime() - date1.getTime();
+        int dias=(int) TimeUnit.DAYS.convert(ms,TimeUnit.MILLISECONDS);
         if(dias>Videoclub.PERIODO_ALQUILER) {
             return (dias -Videoclub.PERIODO_ALQUILER)*Videoclub.RECARGO_POR_DIA;
         }else{

@@ -20,54 +20,8 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Faker faker=new Faker(new Locale("es"));
-        ArrayList<Multimedia.Formato> formatos=new ArrayList<>();
-        ArrayList<Videojuego.Plataforma> plataformas=new ArrayList<>();
-        formatos.add(Multimedia.Formato.ARCHIVO);
-        formatos.add(Multimedia.Formato.BLUE_RAY);
-        formatos.add(Multimedia.Formato.DVD);
-        plataformas.add(Videojuego.Plataforma.PS4);
-        plataformas.add(Videojuego.Plataforma.PS3);
-        plataformas.add(Videojuego.Plataforma.NINTENDO_Switch);
-        //faker para socios
-        videoclub.anyadirSocio(new Socio("German","Gascon", Lib.gregorianFromString("15/10/1985")));
-        for(int i=0;i<100;i++){
 
-            videoclub.anyadirSocio(new Socio(faker.name().firstName(),faker.name().lastName(),
-                    Lib.fakerFechas("05/10/1992","08/10/2000")));
-        }
-        //faker para multimedia
-        videoclub.anyadirMultimedia(new Pelicula("Superman","Richard Donner",
-                Lib.gregorianFromString("10/10/1978"),143,"Genne Hackman",
-                "Marlon Brando", Pelicula.Genero.ACCION,formatos));
-        for(int i=0;i<100;i++){
-            videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),
-                    Lib.fakerFechas("05/10/1994","08/10/2018"),faker.number().randomDigit(),faker.name().firstName(),
-                    faker.name().firstName(), Pelicula.Genero.ACCION,formatos ));
-
-            videoclub.anyadirMultimedia(new Videojuego(faker.lordOfTheRings().character(),faker.artist().name(),
-                    Lib.fakerFechas("05/10/1994","08/10/2018"),plataformas,formatos));
-        }
-
-
-
-        for (Multimedia m:videoclub.getMultimedia()
-             ) {
-            for (Multimedia.Formato formato: m.getFormatos()
-                 ) {
-                if(m instanceof  Pelicula) videoclub.anyadirAlquilable(new Alquilable((Pelicula)m,formato));
-                if(m instanceof Videojuego){
-                    for (Videojuego.Plataforma plataforma:Videojuego.Plataforma.values()
-                         ) {
-                        videoclub.anyadirAlquilable(new Alquilable((Videojuego)m,formato,plataforma));
-                    }
-
-                }
-            }
-        }
-        Collections.sort(videoclub.getMultimedia());
-
-        //aqui
+        faker();
         int opcion=0;
         do{
             do{
@@ -225,18 +179,21 @@ public class Main {
                                 Lib.pausa();
                                 break;
                             case 5:
-
+                                //
                                 for (FichaSocio ficha:videoclub.getFichasSocios()
                                      ) {
-                                    System.out.println(ficha.getSocio().toString());
-                                    System.out.println(ficha.getAlquileres().toString());
+                                    if(ficha.getAlquileres().size()>0) {
+                                        System.out.println(ficha.getSocio().toString());
+                                        System.out.println(ficha.getAlquileres().toString());
+                                    }
                                 }
                                 Lib.pausa();
                                 break;
                             case 6:
-                                int recargo=0;
+                                int recargo;
                                 for (FichaSocio ficha: videoclub.getFichasSocios()
                                      ) {
+                                    recargo=0;
                                     for (Alquiler alquiler:ficha.getAlquileresVigentes()
                                          ) {
                                         recargo+=alquiler.calcularRecargo(new GregorianCalendar());
@@ -273,6 +230,7 @@ public class Main {
 
         }while(opcion!=0);
     }
+
 
 
     public static void menuPrincipal(){
@@ -333,6 +291,9 @@ public class Main {
                     if(0<a.calcularRecargo(new GregorianCalendar())){
                         System.out.println("Este socio tiene recargos pendientes , debe abonar "
                                 + a.calcularRecargo(new GregorianCalendar()));
+                        System.out.println("abone el recargo e intentelo de nuevo");
+                        Lib.pausa();
+                        return;
                     }
                 }
             }
@@ -753,7 +714,7 @@ public class Main {
             apellido= lector.nextLine();
         }while (apellido.length()<1);
         String fechaString;
-        int edad;
+        int edad=18;
         do {
             do {
                 System.out.println("Dime una fecha de nacimiento");
@@ -767,7 +728,7 @@ public class Main {
             Date current=new GregorianCalendar().getTime();
             LocalDate currentLocal= current.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate fechaNacLocal= fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            edad=Period.between(currentLocal,fechaNacLocal).getYears();
+            edad=Period.between(fechaNacLocal,currentLocal).getYears();
             if(edad<18){
                 System.out.println("Se necesita se mayor de edad");
                 Lib.pausa();
@@ -778,7 +739,63 @@ public class Main {
         Lib.pausa();
     }
 
+    public static void faker(){
+        Faker faker=new Faker(new Locale("es"));
+        ArrayList<Multimedia.Formato> formatos=new ArrayList<>();
+        ArrayList<Videojuego.Plataforma> plataformas=new ArrayList<>();
+        formatos.add(Multimedia.Formato.ARCHIVO);
+        formatos.add(Multimedia.Formato.BLUE_RAY);
+        formatos.add(Multimedia.Formato.DVD);
+        plataformas.add(Videojuego.Plataforma.PS4);
+        plataformas.add(Videojuego.Plataforma.PS3);
+        plataformas.add(Videojuego.Plataforma.NINTENDO_Switch);
 
+
+        //faker para socios
+        videoclub.anyadirSocio(new Socio("German","Gascon", Lib.gregorianFromString("15/10/1985")));
+        for(int i=0;i<100;i++){
+
+            videoclub.anyadirSocio(new Socio(faker.name().firstName(),faker.name().lastName(),
+                    Lib.fakerFechas("05/10/1992","08/10/2000")));
+        }
+        //faker para multimedia
+        videoclub.anyadirMultimedia(new Pelicula("Superman","Richard Donner",
+                Lib.gregorianFromString("10/10/1978"),143,"Genne Hackman",
+                "Marlon Brando", Pelicula.Genero.ACCION,formatos));
+        for(int i=0;i<100;i++){
+            videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),
+                    Lib.fakerFechas("05/10/1994","08/10/2018"),faker.number().randomDigit(),faker.name().firstName(),
+                    faker.name().firstName(), Pelicula.Genero.ACCION,formatos ));
+
+            videoclub.anyadirMultimedia(new Videojuego(faker.lordOfTheRings().character(),faker.artist().name(),
+                    Lib.fakerFechas("05/10/1994","08/10/2018"),plataformas,formatos));
+        }
+
+
+
+        for (Multimedia m:videoclub.getMultimedia()
+        ) {
+            for (Multimedia.Formato formato: m.getFormatos()
+            ) {
+                if(m instanceof  Pelicula) videoclub.anyadirAlquilable(new Alquilable((Pelicula)m,formato));
+                if(m instanceof Videojuego){
+                    for (Videojuego.Plataforma plataforma:Videojuego.Plataforma.values()
+                    ) {
+                        videoclub.anyadirAlquilable(new Alquilable((Videojuego)m,formato,plataforma));
+                    }
+
+                }
+            }
+        }
+
+        videoclub.getFichasSocios().add(new FichaSocio(videoclub.getSocios().get(1)));
+        videoclub.getFichasSocios().get(0).getAlquileresVigentes().add(new Alquiler(videoclub.getAlquilables().get(8),
+                Lib.gregorianFromString("05/04/2019")));
+
+
+        Collections.sort(videoclub.getMultimedia());
+
+    }
 }
 
 

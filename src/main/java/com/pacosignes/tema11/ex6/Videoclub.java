@@ -148,6 +148,11 @@ public class Videoclub {
         return false;
     }
 
+    /**
+     * Devuelve alquilable si no lo consigue devuelve false
+     * @param alquilable
+     * @return
+     */
     public boolean devolverAlquilable(Alquilable alquilable){
 
         for (FichaSocio fichaSocio:fichasSocios
