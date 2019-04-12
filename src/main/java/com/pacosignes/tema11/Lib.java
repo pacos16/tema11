@@ -85,7 +85,7 @@ public class Lib {
     }
 
     public static boolean validarFecha(String fecha){
-
+        if(fecha.length()>10)return false;
         try{
             SimpleDateFormat formatoFecha;
             formatoFecha= new SimpleDateFormat("dd/MM/yyyy");

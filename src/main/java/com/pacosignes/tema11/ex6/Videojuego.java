@@ -9,10 +9,14 @@ public class Videojuego extends Multimedia {
 
     public enum Plataforma{
 
-        XBOX("X Box"),NINTENDO_Switch("Nintendo Switch"),PS4("Play Station 4"),
-        PS3("Play Station 3"),ORDENADOR("Ordenador");
-        String nombre;
-        Plataforma(String nombre){
+        XBOX("X Box",1),NINTENDO_Switch("Nintendo Switch",2),PS4("Play Station 4",3),
+        PS3("Play Station 3",4),ORDENADOR("Ordenador",5);
+        private String nombre;
+        private int pos;
+        public int getPos(){
+            return pos;
+        }
+        Plataforma(String nombre,int pos){
             this.nombre=nombre;
         }
 

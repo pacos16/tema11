@@ -6,6 +6,10 @@ import com.github.javafaker.Faker;
 import com.pacosignes.tema11.Lib;
 
 import java.sql.SQLOutput;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.*;
 
 
@@ -18,30 +22,50 @@ public class Main {
     public static void main(String[] args) {
         Faker faker=new Faker(new Locale("es"));
         ArrayList<Multimedia.Formato> formatos=new ArrayList<>();
+        ArrayList<Videojuego.Plataforma> plataformas=new ArrayList<>();
         formatos.add(Multimedia.Formato.ARCHIVO);
         formatos.add(Multimedia.Formato.BLUE_RAY);
+        formatos.add(Multimedia.Formato.DVD);
+        plataformas.add(Videojuego.Plataforma.PS4);
+        plataformas.add(Videojuego.Plataforma.PS3);
+        plataformas.add(Videojuego.Plataforma.NINTENDO_Switch);
         //faker para socios
+        videoclub.anyadirSocio(new Socio("German","Gascon", Lib.gregorianFromString("15/10/1985")));
         for(int i=0;i<100;i++){
 
             videoclub.anyadirSocio(new Socio(faker.name().firstName(),faker.name().lastName(),
                     Lib.fakerFechas("05/10/1992","08/10/2000")));
         }
-        //faker para pelis
+        //faker para multimedia
+        videoclub.anyadirMultimedia(new Pelicula("Superman","Richard Donner",
+                Lib.gregorianFromString("10/10/1978"),143,"Genne Hackman",
+                "Marlon Brando", Pelicula.Genero.ACCION,formatos));
         for(int i=0;i<100;i++){
             videoclub.anyadirMultimedia(new Pelicula(faker.harryPotter().book(),faker.artist().name(),
-                    Lib.fakerFechas("05/10/2000","08/10/2018"),faker.number().randomDigit(),faker.name().firstName(),
+                    Lib.fakerFechas("05/10/1994","08/10/2018"),faker.number().randomDigit(),faker.name().firstName(),
                     faker.name().firstName(), Pelicula.Genero.ACCION,formatos ));
+
+            videoclub.anyadirMultimedia(new Videojuego(faker.lordOfTheRings().character(),faker.artist().name(),
+                    Lib.fakerFechas("05/10/1994","08/10/2018"),plataformas,formatos));
         }
-        Collections.sort(videoclub.getMultimedia());
+
 
 
         for (Multimedia m:videoclub.getMultimedia()
              ) {
             for (Multimedia.Formato formato: m.getFormatos()
                  ) {
-                videoclub.anyadirAlquilable(new Alquilable((Pelicula)m,formato));
+                if(m instanceof  Pelicula) videoclub.anyadirAlquilable(new Alquilable((Pelicula)m,formato));
+                if(m instanceof Videojuego){
+                    for (Videojuego.Plataforma plataforma:Videojuego.Plataforma.values()
+                         ) {
+                        videoclub.anyadirAlquilable(new Alquilable((Videojuego)m,formato,plataforma));
+                    }
+
+                }
             }
         }
+        Collections.sort(videoclub.getMultimedia());
 
         //aqui
         int opcion=0;
@@ -117,7 +141,7 @@ public class Main {
                         System.out.println("SOCIOS");
                         System.out.println("----------");
                         System.out.println("1.Anyadir");
-                        System.out.println("2.Borrar");
+                        System.out.println("2.Listado");
                         System.out.println("--------");
                         System.out.println("0.Volver");
                         try {
@@ -126,18 +150,21 @@ public class Main {
                                 System.out.println("Introduce un numero de la lista");
                             } else {
                                 if (opcion3 == 1) {
-                                    //todo anyadirSocio();
-                                } else if (opcion3 == 2) {
-                                    //todo borrarSocio();
+                                    anyadirSocio();
+                                }else if(opcion3==2){
+                                    for (Socio socio:videoclub.getSocios()
+                                         ) {
+                                        System.out.println(socio.toString());
+                                    }
                                 }
                             }
-                        } catch (NumberFormatException nfe) {
+                        }catch (NumberFormatException nfe) {
                             System.out.println("Introduce un numero porfavor");
                         }
                     }while(opcion3!=0);
                     break;
                 case 4:
-                    int opcion4=-1;
+                    int opcion4;
                     do{
                         System.out.println("INFORMES");
                         System.out.println("--------");
@@ -387,6 +414,8 @@ public class Main {
         Lib.pausa();
     }
 
+
+
     public static void anyadirMultimedia(){
         int opcion;
         do{
@@ -459,7 +488,75 @@ public class Main {
 
 
             }else if(opcion==2){
-
+                int opcion3;
+                System.out.println("*Videojuegos*");
+                System.out.println("1.Anyadir videojuego");
+                System.out.println("2.Anyadir alquilable videojuego");
+                System.out.println("--------------------");
+                System.out.println("0.Volver");
+                opcion3=Lib.pedirInt(0,2);
+                if(opcion3==1) {
+                    anyadirVideojuego();
+                }else if(opcion3==2){
+                    String titulo;
+                    String autor;
+                    boolean encontrada;
+                    Videojuego v=null;
+                    do{
+                        encontrada=false;
+                        System.out.println("**Introduzca los datos del videojuego**");
+                        System.out.println("Dime el titulo");
+                        titulo= lector.nextLine();
+                        System.out.println("Dime el autor");
+                        autor= lector.nextLine();
+                        for (Multimedia multimedia: videoclub.getMultimedia()
+                        ) {
+                            if(multimedia.getNombre().toLowerCase().equals(titulo) &&
+                                    multimedia.getAutor().toLowerCase().equals(autor) && multimedia instanceof Videojuego){
+                                encontrada=true;
+                                v=(Videojuego)multimedia;
+                            }
+                        }
+                        if(!encontrada){
+                            System.out.println("Este videojuego no esta en la base de datos");
+                            Lib.pausa();
+                        }
+                    }while(!encontrada);
+                    boolean disponible;
+                    int opcionFormato;
+                    Multimedia.Formato format=null;
+                    do{
+                        disponible=false;
+                        System.out.println("*Elige un formato*");
+                        opcionFormato=seleccionarFormato();
+                        for (Multimedia.Formato formato :v.formatos
+                        ) {
+                            if(formato.ordinal()==opcionFormato-1){
+                                disponible=true;
+                                format=formato;
+                                System.out.println("Formato anyadido con exito");
+                            }
+                        }
+                        if(!disponible){
+                            System.out.println("Este formato no esta disponible");
+                            Lib.pausa();
+                        }
+                    }while (!disponible);
+                    int opcionPlataforma;
+                    do{
+                        disponible=false;
+                        System.out.println("*Elige una plataforma*");
+                        opcionPlataforma=seleccionarPlataforma();
+                        for (Videojuego.Plataforma plat:Videojuego.Plataforma.values()
+                             ) {
+                            if(plat.ordinal()==opcionPlataforma-1){
+                                disponible=true;
+                                videoclub.getAlquilables().add(new Alquilable(v,format,plat));
+                                System.out.println("Videojuego creado con exito");
+                            }
+                        }
+                    }while(!disponible);
+                }
             }
         }while(opcion!=0);
 
@@ -561,9 +658,129 @@ public class Main {
         System.out.println("0. Para continuar");
         return Lib.pedirInt(0,Multimedia.Formato.values().length);
     }
+    public static int seleccionarPlataforma(){
+
+        for (Videojuego.Plataforma p: Videojuego.Plataforma.values()
+        ) {
+            System.out.println((p.ordinal()+1)+" "+p.toString());
+        }
+        System.out.println("--------------");
+        System.out.println("0. Para continuar");
+        return Lib.pedirInt(0,Multimedia.Formato.values().length);
+    }
+    public static void anyadirVideojuego(){
+        String nombre;
+        String autor;
+        GregorianCalendar fechaEstreno=new GregorianCalendar();
+        ArrayList<Videojuego.Plataforma> plataformas=new ArrayList<>();
+        ArrayList<Multimedia.Formato> formatos=new ArrayList<>();
+
+        do{
+            System.out.println("Dime el nombre");
+            nombre= lector.nextLine();
+
+        }while (nombre.length()<1);
+        do{
+            System.out.println("Dime el autor");
+            autor= lector.nextLine();
+
+        }while (autor.length()<1);
+        String fecha;
+        do{
+            System.out.println("Dime una fecha de estreno en formato dd/mm/yyyy");
+            fecha= lector.nextLine();
+            if(Lib.validarFecha(fecha)){
+                fechaEstreno=Lib.gregorianFromString(fecha);
+            }
+            if(!Lib.validarFecha(fecha)){
+                System.out.println("La fecha no es valida");
+            }
+
+        }while (!Lib.validarFecha(fecha));
+
+        int opcion2;
+        do{
+            opcion2=seleccionarFormato();
+            if(opcion2!=0){
+                boolean noEsta=true;
+                for (Multimedia.Formato format:formatos
+                ) {
+                    if(format.equals(Multimedia.Formato.values()[opcion2-1])){
+                        noEsta=false;
+                        System.out.println("Este formato ya esta");
+                    }
+                }
+                if(noEsta){
+                    formatos.add(Multimedia.Formato.values()[opcion2-1]);
+                }
+            }
+
+
+        }while(opcion2!=0 || formatos.size()==0);
+        int opcion;
+        do{
+            opcion=seleccionarPlataforma();
+            if(opcion!=0){
+                boolean noEsta=true;
+                for (Videojuego.Plataforma p: plataformas
+                     ) {
+                    if(p.equals(Videojuego.Plataforma.values()[opcion-1])){
+                        noEsta=false;
+                        System.out.println("Esta plataforma ya esta");
+                    }
+                }
+                if(noEsta){
+                    plataformas.add(Videojuego.Plataforma.values()[opcion-1]);
+                }
+
+            }
+        }while(opcion!=0 || plataformas.size()==0);
+        videoclub.anyadirMultimedia(new Videojuego(nombre,autor,fechaEstreno,plataformas,formatos));
+        System.out.println("Videojuego creado con exito creada con exito");
+        Lib.pausa();
+    }
+
+    public static void anyadirSocio(){
+        String nombre;
+        String apellido;
+        GregorianCalendar fechaNacimiento;
+        do{
+            System.out.println("Dime un nombre");
+            nombre= lector.nextLine();
+        }while (nombre.length()<1);
+        do{
+            System.out.println("Dime un apellido");
+            apellido= lector.nextLine();
+        }while (apellido.length()<1);
+        String fechaString;
+        int edad;
+        do {
+            do {
+                System.out.println("Dime una fecha de nacimiento");
+                fechaString = lector.nextLine();
+                if(!Lib.validarFecha(fechaString)){
+                    System.out.println("La fecha no es correcta");
+                    Lib.pausa();
+                }
+            } while (!Lib.validarFecha(fechaString));
+            fechaNacimiento=Lib.gregorianFromString(fechaString);
+            Date current=new GregorianCalendar().getTime();
+            LocalDate currentLocal= current.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaNacLocal= fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            edad=Period.between(currentLocal,fechaNacLocal).getYears();
+            if(edad<18){
+                System.out.println("Se necesita se mayor de edad");
+                Lib.pausa();
+            }
+        }while(edad<18);
+        videoclub.anyadirSocio(new Socio(nombre,apellido,fechaNacimiento));
+        System.out.println("Socio anyadido con exito");
+        Lib.pausa();
+    }
 
 
 }
+
 
 
 
