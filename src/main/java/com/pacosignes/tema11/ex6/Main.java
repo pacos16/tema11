@@ -739,6 +739,7 @@ public class Main {
         Lib.pausa();
     }
 
+
     public static void faker(){
         Faker faker=new Faker(new Locale("es"));
         ArrayList<Multimedia.Formato> formatos=new ArrayList<>();
